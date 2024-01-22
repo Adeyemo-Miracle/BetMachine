@@ -37,11 +37,12 @@ def get_slot_machine_spin(rows, cols, symbols):
 def print_slot_machine(columns):
     for row in range(len(columns[0])):
         for i, column in enumerate(columns):
-            if i != len(column)-1:
+            if i != len(column) - 1:
                 print (column[row], end=' | ')
             else:
-                print (column[row], end='')        
-    
+                print (column[row], end='')
+                
+        print()
     
 def deposit():
     while True:
@@ -75,7 +76,7 @@ def get_bet():
         amount = input('What would you like to bet on each line? $')
         if amount.isdigit():
             amount = int(amount)
-            if MAX_LINES >= amount >= MIN_BET:
+            if MAX_BET >= amount >= MIN_BET:
                 break
             else:
                 print(f'Amount must be between ${MIN_BET} - ${MAX_BET}.')
@@ -98,7 +99,8 @@ def main():
             break
     print(f'You are betting ${bet} on {lines} lines. Total bet is equal to ${total_bet}')
 
-    slots = get_slot_machine_spin(ROWS,COLS, symbol_count)
+    slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
+    print_slot_machine(slots)
 
 
 main()
